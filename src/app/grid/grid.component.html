@@ -1,1 +1,14 @@
-<p>grid works!</p>
+<div class="mainContainer">
+  <div class="gridContainer">
+    @for (card of emojiList; track $index) {
+    <div
+      class="card"
+      (click)="check($index)"
+      [class.clicked]="clickedCards.includes($index)"
+      [class.matched]="matchedCards.includes($index)"
+    >
+      {{ emojiList[$index] }}
+    </div>
+    }
+  </div>
+</div>
