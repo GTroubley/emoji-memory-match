@@ -19,10 +19,12 @@
 
     & .card.clicked{
         color: rgba(255, 255, 255, 1);
+        transform: rotateY(0deg);
     }
 
     & .card.matched{
         color: rgba(255, 255, 255, 1);
+        transform: rotateY(0deg);
     }
 
     & .card {
@@ -40,6 +42,7 @@
       align-items: center;
       text-align: center;
       color: rgba(255, 255, 255, 0);
+      transform: rotateY(180deg);
 
       &:hover {
         border: 1px solid white;

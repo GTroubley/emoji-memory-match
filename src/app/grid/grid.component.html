@@ -1,13 +1,15 @@
 <div class="mainContainer">
   <div class="gridContainer">
-    @for (card of emojiList; track $index) {
+    @for (card of gameService.pairedList; track $index) {
     <div
       class="card"
       (click)="check($index)"
-      [class.clicked]="clickedCards.includes($index)"
-      [class.matched]="matchedCards.includes($index)"
+      [class.clicked]="gameService.clickedCards.includes($index)"
+      [class.matched]="gameService.matchedCards.includes($index)"
     >
-      {{ emojiList[$index] }}
+    @if (gameService.showEmoji) {
+      {{ gameService.pairedList[$index] }}
+    }
     </div>
     }
   </div>
