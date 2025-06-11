@@ -2,5 +2,10 @@ export enum State {
     FirstPick,
     SecondPick,
     Checking,
-    Pause
+    Won
+}
+
+export interface EmojiReaction{
+    emoji: string;
+    quote: string;
 }

@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+.mainContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .score{
+        font-family: "Orbitron";
+        font-size: 2rem;
+        font-weight: 600;
+        letter-spacing: .25rem;
+        color: var(--card-hover);
+
+        &::before{
+            content: 'Checks: ';
+        }
+    }
+}

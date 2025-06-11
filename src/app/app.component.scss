@@ -3,7 +3,28 @@
     height: 100%;
     background: var(--bg-base);
     padding: 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto 1fr;
+    gap:1rem;
+
+  app-header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  app-score {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  app-grid {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  app-reaction {
+    grid-column: 3;
+    grid-row: 2;
+  }
 }

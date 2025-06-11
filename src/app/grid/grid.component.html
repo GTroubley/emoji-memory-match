@@ -2,7 +2,7 @@
   <div class="gridContainer">
     @for (card of gameService.pairedList; track $index) {
     <div
-      class="card"
+      class="card noselect"
       (click)="check($index)"
       [class.clicked]="gameService.clickedCards.includes($index)"
       [class.matched]="gameService.matchedCards.includes($index)"

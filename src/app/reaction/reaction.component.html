@@ -1,0 +1,4 @@
+<div class="mainContainer">
+  <div class="reaction">{{ gameService.isGameWon() ? this.gameService.getFinalReaction().emoji : this.gameService.getLiveReaction().emoji}}</div>
+  <div class="quote">{{ gameService.isGameWon() ? this.gameService.getFinalReaction().quote : this.gameService.getLiveReaction().quote }}</div>
+</div>
