@@ -22,7 +22,7 @@ export class GameService {
         // If the clicked card's index exists in clicked cards or in matched cards, pick is invalid and returns
         if (this.clickedCards.includes(index) || this.matchedCards.includes(index)) return;
         // If game state is Checking (waiting for setTimeout to end) to pick again
-        if (this.gameState == State.Checking) return;
+        if (this.gameState == State.Checking || this.gameState == State.Won) return;
         // Card picking states
         const cardPickingStates: State[] = [State.FirstPick,State.SecondPick];
         // If game is in card picking state (pick of 1st or 2nd card)
@@ -46,7 +46,7 @@ export class GameService {
             }
             // After 1-sec change game state to First Pick and reset clicked cards array
             setTimeout(()=>{
-                this.gameState = State.FirstPick;
+                this.gameState = this.isGameWon() ? State.Won : State.FirstPick ;
                 this.clickedCards = [];
             }, 1000);
             setTimeout(()=>{this.fadeCards=[];}, 1300);
@@ -57,8 +57,13 @@ export class GameService {
         return this.gameState == State.Won;
     }
 
+    // Returns EmojiReaction object
+    public getReaction(): EmojiReaction{
+        return this.isGameWon() ? this.getFinalReaction() : this.getLiveReaction();
+    }
+
     // Get live reaction while still playing
-    public getLiveReaction(): EmojiReaction {
+    private getLiveReaction(): EmojiReaction {
         let reaction: EmojiReaction = { emoji: "", quote: "" };
         if (this.checks <= 8) {
             reaction.emoji = "😎";
@@ -74,7 +79,7 @@ export class GameService {
             reaction.quote = "";
         } else if (this.checks <= 22) {
             reaction.emoji = "😐";
-            reaction.quote = "";
+            reaction.quote = "Hmm..";
         } else if (this.checks <= 26) {
             reaction.emoji = "😅";
             reaction.quote = "...";
@@ -92,7 +97,7 @@ export class GameService {
     }
 
     // Get reaction when game is won
-    public getFinalReaction(): EmojiReaction {
+    private getFinalReaction(): EmojiReaction {
         let reaction: EmojiReaction = { emoji: "", quote: "" };
         if (this.checks <= 8) {
             reaction.emoji = "🧠";
@@ -114,7 +119,7 @@ export class GameService {
             reaction.quote = "That was a close one. Barely made it!";
         } else if (this.checks <= 30) {
             reaction.emoji = "🫠";
-            reaction.quote = "Oof. That board took you down a peg.";
+            reaction.quote = "Oof. That was almost painful.";
         } else if (this.checks <= 35) {
             reaction.emoji = "😭";
             reaction.quote = "So many checks. So much pain.";
