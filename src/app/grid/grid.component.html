@@ -7,7 +7,9 @@
       [class.clicked]="gameService.clickedCards.includes($index)"
       [class.matched]="gameService.matchedCards.includes($index)"
     >
-    @if (gameService.showEmoji) {
+    @if (gameService.matchedCards.includes($index) || ( gameService.clickedCards.includes($index) )) {
+      {{ gameService.pairedList[$index] }}
+    }@else if (gameService.fadeCards.includes($index)) {
       {{ gameService.pairedList[$index] }}
     }
     </div>

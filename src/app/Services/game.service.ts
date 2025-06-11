@@ -13,19 +13,21 @@ export class GameService {
     // game-ready paired list
     public pairedList: string[] = this.getEmojis(8);
     public gameState: State = State.FirstPick;
-    showEmoji: boolean = false;
     clickedCards: number[] = [];    // Array of current clicked cards
     matchedCards: number[] = [];    // Array of matched cards found
+    fadeCards: number[] = [];       // Temporarily holds clicked cards to fade out their emoji
+
 
     public cardCheck(index:number){
         // If the clicked card's index exists in clicked cards or in matched cards, pick is invalid and returns
         if (this.clickedCards.includes(index) || this.matchedCards.includes(index)) return;
+        // If game state is Checking (waiting for setTimeout to end) to pick again
+        if (this.gameState == State.Checking) return;
+        // Card picking states
         const cardPickingStates: State[] = [State.FirstPick,State.SecondPick];
         // If game is in card picking state (pick of 1st or 2nd card)
         if (cardPickingStates.includes(this.gameState)) {  
-            this.showEmoji = true;
             if (this.clickedCards.length >= 2) {        // If there are 2 clicked cards
-                this.clickedCards = [];                 // Reset clickedCards
                 this.gameState = State.Checking;        // Set game state to Checking
             }else{                                      // Else
                 this.clickedCards.push(index);          // Add the clicked card in clicked cards
@@ -34,20 +36,19 @@ export class GameService {
         }
         // If game is in card checking state
         if (State.Checking === this.gameState) {
-            let found = false;
+            this.fadeCards = [...this.clickedCards];
             // If picked cards are matching, then add them to the match cards array
             if (this.pairedList[this.clickedCards[0]] == this.pairedList[this.clickedCards[1]]) {
                 this.matchedCards = [...this.matchedCards, this.clickedCards[0], this.clickedCards[1]];
-                found = true;
             }
             // After 1-sec change game state to First Pick and reset clicked cards array
             setTimeout(()=>{
                 this.gameState = State.FirstPick;
                 this.clickedCards = [];
-            },1000);
+            }, 1000);
+            setTimeout(()=>{this.fadeCards=[];}, 1300);
         }
     }
-
 
     // Creates & Returns the game-ready paired emoji list
     private getEmojis(pairs: number){

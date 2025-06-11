@@ -1,6 +1,5 @@
 import { Component, inject } from '@angular/core';
 import { GameService } from '../Services/game.service';
-import { State } from '../Types/types.model';
 
 @Component({
   selector: 'app-grid',

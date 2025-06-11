@@ -20,11 +20,13 @@
     & .card.clicked{
         color: rgba(255, 255, 255, 1);
         transform: rotateY(0deg);
+        transition: all 0.3s ease-in-out;
     }
 
     & .card.matched{
         color: rgba(255, 255, 255, 1);
         transform: rotateY(0deg);
+        transition: all 0.3s ease-in-out;
     }
 
     & .card {
@@ -34,7 +36,6 @@
       border-radius: 0.6rem;
       border: none;
       box-shadow: 0 .125rem .2rem var(--bg-base);
-      transition: all 0.3s ease-in-out;
       font-size: 3rem;
       display: flex;
       flex-direction: column;
@@ -43,6 +44,7 @@
       text-align: center;
       color: rgba(255, 255, 255, 0);
       transform: rotateY(180deg);
+      transition: all 0.3s ease-in-out;
 
       &:hover {
         border: 1px solid white;
@@ -50,6 +52,10 @@
         box-shadow: 0 0 .5rem white;
         //color: rgba(255, 255, 255, 1);
         cursor: pointer;
+      }
+
+      &:active{
+        background: var(--card-active);
       }
     }
   }
