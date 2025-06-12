@@ -15,3 +15,15 @@
         color: var(--card-hover);
     }
 }
+
+/* --------- Responsive Layout --------- */
+@media (max-width: 900px) {
+    .mainContainer{
+        height: 3rem;
+
+        & .title{
+            font-size: 2rem;
+            letter-spacing: 0;
+        }
+    }
+}

@@ -68,3 +68,23 @@
     }
   }
 }
+
+/* --------- Responsive Layout --------- */
+@media (max-width: 900px) {
+  .mainContainer{
+    width: 100%;
+    height: 100%;
+    padding: .25rem;
+
+    & .gridContainer{
+      padding: .5rem;
+      gap: .5rem;
+
+      & .card {
+        width: 3rem;
+        height: 3rem;
+        font-size: 2rem;
+      }
+    }
+  }
+}
